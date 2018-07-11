@@ -4,10 +4,39 @@
     <meta charset="UTF-8">
     <title>Document</title>
 </head>
+<style>
+* {box-sizing: border-box;}
+.img-zoom-container {
+  position: relative;
+}
+.img-zoom-lens {
+  position: absolute;
+  border: 1px solid #d4d4d4;
+  /*set the size of the lens:*/
+  width: 40px;
+  height: 40px;
+}
+.img-zoom-result {
+  border: 1px solid #d4d4d4;
+  /*set the size of the result div:*/
+  width: 300px;
+  height: 300px;
+}
+.hide{
+        display: none;
+}
+.show{
+    position: absolute;
+    left: 330px;
+    top:5px;
+    display: block;
+}
+</style>
 <body>
-    <div id="img">
-    <img id="map_img" src="./img/soinlab_map.jpeg" alt="Map to social innovation lab">
+    <div id="img" class="img-zoom-container">
+    <img id="map_img" src="img/soinlab_map.jpeg" width="300" height="240" alt="Map to social innovation lab">
     </div>
-    <div id="zoom"></div>
+    <div id="zoom" class="img-zoom-result"></div>
 </body>
+    <script src="./js/main.js"></script>
 </html>
