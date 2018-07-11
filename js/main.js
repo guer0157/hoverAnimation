@@ -6,8 +6,10 @@ let page={
     //get result div
     result:document.getElementById("zoom"),
     
-    init: function(ev){ 
+    init: function(ev){
+        //remove the hide class from result div;
         page.result.classList.remove("hide");
+        //add the show class to result div;
         page.result.classList.add("show");
         //set class attribute to lens div. 
         page.lens.setAttribute("class","img-zoom-lens");
@@ -20,22 +22,25 @@ let page={
         page.result.style.backgroundImage=`url('${page.img.src}')`;
         //zoom in by using the ratio variables
         page.result.style.backgroundSize=(page.img.width*posx)+'px '+(page.img.height*posy)+'px';
-        
-//        page.lens.addEventListener('mousemove', page.moveLens);
-//        page.img.addEventListener('mousemove', page.moveLens);
+        //call moveLens function pass event (ev).
         page.moveLens(ev);
     },
     addBox: function(){
+        //Hide the result div;
         page.result.classList.add("hide");
-//        page.lens.addEventListener('mousemove', page.init);
-//        page.img.addEventListener('mousemove', page.init);
+        //create event listern on mouse move;
         document.addEventListener("mousemove",page.init);
         
     },
     moveLens: function(ev){
+        //prevent any actions that might happend on mouse move by default.
         ev.preventDefault();
         let pos,x,y;
+        //
         let cx=page.result.offsetWidth/page.lens.offsetWidth;
+        console.log(page.result.offsetWidth);
+        console.log(page.lens.offsetWidth);
+        
         let cy=page.result.offsetHeight/page.lens.offsetHeight;
         pos=page.getCursorPos(ev);
         x=pos.x - (page.lens.offsetWidth/2);
