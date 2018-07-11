@@ -36,54 +36,42 @@ let page={
         //prevent any actions that might happend on mouse move by default.
         ev.preventDefault();
         let pos,x,y;
-        //
+        //create local variable with ratio calculation X
         let cx=page.result.offsetWidth/page.lens.offsetWidth;
-        console.log(page.result.offsetWidth);
-        console.log(page.lens.offsetWidth);
-        
+        //create local variable with ration calculation Y
         let cy=page.result.offsetHeight/page.lens.offsetHeight;
+        //store the return value of function getCursorPos in "pos" variable
         pos=page.getCursorPos(ev);
+        //calculate midpoint of lens X;
         x=pos.x - (page.lens.offsetWidth/2);
+        //calculate midpoint of lenss Y
         y=pos.y - (page.lens.offsetHeight/2);
-        let coordsX=page.img.width - page.lens.offsetWidth;
-        let coordsY=page.img.height - page.lens.offsetHeight;
-        if (x > page.img.width - page.lens.offsetWidth) {x = page.img.width - page.lens.offsetWidth;
-        }
-    if (x < 0) {x = 0;}
-    if (y > page.img.height - page.lens.offsetHeight) {y = page.img.height - page.lens.offsetHeight;
-        }
-    if (y < 0) {y = 0;}
-
-    page.lens.style.left = x + "px";
-    page.lens.style.top = y + "px";
-
-    page.result.style.backgroundPosition = "-" + (x * cx) + "px -" + (y * cy) + "px";    
+        //set position of page lens X
+        page.lens.style.left = x + "px";
+        //set position of page lens Y
+        page.lens.style.top = y + "px";
+        //calculate the background position of the result div this is the portion of the image that is within the frame of the lens which will project on the result div. 
+        page.result.style.backgroundPosition = "-" + (x * cx) + "px -" + (y * cy) + "px";    
     },
     getCursorPos: function(ev){
         let a, x=0,y=0;
+        //store event in a variable
         ev=ev||window.event;
+        //get coordinates of the image.
         a=page.img.getBoundingClientRect();
+        //calculate the coordinates of the pointer
         x=ev.pageX - a.left;
         y=ev.pageY - a.top;
-        x=x-window.pageXOffset;
-        y=y-window.pageYOffset;
-        if(x>a.right||y>a.bottom){
+        //add condition when pointer is out of img frame to hide result div
+        if(x>a.right-15||y>a.bottom-50||y<a.top||x<a.left-7){
             page.result.classList.remove("show");
             page.result.classList.add("hide");
-            x=0;
-            y=0;
+            //set default position of lens
+            x=13;
+            y=13;
         }
+        //return an object with the x and y coordinates.
         return {"x":x,"y":y};
     }
 }
 document.addEventListener('DOMContentLoaded', page.addBox);
-//bottom: 248
-//height: 240
-//left: 8
-//right: 308
-//top: 8
-//width: 300
-//x: 8
-//y: 8
-//ev.pageX=308
-//ev.pageY=247
