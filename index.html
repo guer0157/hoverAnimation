@@ -3,7 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
+    <meta property="og:url"       content="http://slidelab7.ca/">
+  <meta property="og:type"          content="website" >
+  <meta property="og:title"         content="Welcome to Slide" >
+  <meta property="og:description"   content="Share this with your friends" >
+  <meta property="og:image"  content="http://slidelab7.ca/images/icons/logo.svg">
 </head>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0';
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 <style>
 * {box-sizing: border-box;}
 .img-zoom-container {
@@ -34,6 +47,8 @@
 </style>
 <body>
     <div id="img" class="img-zoom-container">
+    <div class="fb-share-button" data-href="http://slidelab7.ca/" data-layout="button_count" data-size="small" data-mobile-iframe="true"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fslidelab7.ca%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a>
+    </div>
     <img id="map_img" src="img/soinlab_map.jpeg" width="300" height="240" alt="Map to social innovation lab">
     </div>
     <div id="zoom" class="img-zoom-result"></div>
